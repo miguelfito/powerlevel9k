@@ -17,8 +17,31 @@
 ################################################################
 
 # Personal colors
-#DEBIAN_COLOR="[38;5;197m"
-DEBIAN_COLOR="197"
+# Non ANSI Colors
+DEBIAN="197" # Debian red/magenta
+CENTOS="90"  # CentOS magenta/violet
+
+# Define host color depending OS
+OS_ID=`lsb_release -si`
+case "$OS_ID" in
+Debian)
+  HOST_COLOR=$DEBIAN
+  GREP_COLOR="1;38;5;197"
+  ;;
+openSUSE*|suse*)
+  HOST_COLOR=$GREEN
+  ;;
+Ubuntu)
+  HOST_COLOR=$YELLOW
+  ;;
+CentOS)
+  HOST_COLOR=$CENTOS
+  GREP_COLOR="1;38;5;90"
+  ;;
+*)
+  HOST_COLOR=$WHITE
+  ;;
+esac
 
 ## Turn on for Debugging
 #zstyle ':vcs_info:*+*:*' debug true
@@ -443,9 +466,9 @@ prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     if [[ $(print -P "%#") == '#' ]]; then
       # Shell runs as root
-      "$1_prompt_segment" "$0_ROOT" "$2" "$DEFAULT_COLOR" "yellow" "$USER@%F{$DEBIAN_COLOR}%m"
+      "$1_prompt_segment" "$0_ROOT" "$2" "$DEFAULT_COLOR" "yellow" "$USER@%F{$HOST_COLOR}%m"
     else
-      "$1_prompt_segment" "$0_DEFAULT" "$2" "$DEFAULT_COLOR" "011" "$USER@%F{$DEBIAN_COLOR}%m"
+      "$1_prompt_segment" "$0_DEFAULT" "$2" "$DEFAULT_COLOR" "011" "$USER@%F{$HOST_COLOR}%m"
     fi
   fi
 }

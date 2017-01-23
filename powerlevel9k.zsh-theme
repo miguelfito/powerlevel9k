@@ -18,9 +18,10 @@
 
 # Personal colors
 # Non ANSI Colors
-DEBIAN="197" # Debian red/magenta
-REDHAT="88"  # Red Hat red
-CENTOS="90"  # CentOS magenta/violet
+DEBIAN="197"  # Debian red/magenta
+REDHAT="88"   # Red Hat red
+CENTOS="90"   # CentOS magenta/violet
+SUSE="42"     # openSUSE green
 
 # Define host color depending OS
 OS_ID=`lsb_release -si`
@@ -30,7 +31,8 @@ Debian*)
   GREP_COLOR="1;38;5;197"
   ;;
 openSUSE*|suse*)
-  HOST_COLOR=$GREEN
+  HOST_COLOR=$SUSE
+  GREP_COLOR="1;38;5;42"
   ;;
 Ubuntu*)
   HOST_COLOR=$YELLOW

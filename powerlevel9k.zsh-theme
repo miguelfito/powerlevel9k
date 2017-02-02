@@ -22,6 +22,7 @@ DEBIAN="197"  # Debian red/magenta
 REDHAT="88"   # Red Hat red
 CENTOS="90"   # CentOS magenta/violet
 SUSE="42"     # openSUSE green
+ARCH="33"    # Arch Linux blue
 
 # Define host color depending OS
 OS_ID=`lsb_release -si`
@@ -45,8 +46,13 @@ CentOS*)
   HOST_COLOR=$CENTOS
   GREP_COLOR="1;38;5;90"
   ;;
+Arch*)
+  HOST_COLOR=$ARCH
+  GREP_COLOR="1;38;5;196"
+  ;;
 *)
   HOST_COLOR=$WHITE
+  GREP_COLOR="1;38;5;196"
   ;;
 esac
 
